@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>십자말풀이</title>
+
+<style>
+  body {
+    margin: 0;
+    background: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .screen {
+    position: relative;
+    width: 402px;
+    height: 874px;
+    background: #F3EFE6;
+    font-family: Inter, sans-serif;
+  }
+
+  .topbar {
+    position: absolute;
+    width: 100%;
+    height: 59px;
+    top: 0;
+    left: 0;
+    background: #D9D9D9;
+  }
+
+  .title-pill {
+    position: absolute;
+    top: 87px;
+    left: 26px;
+    width: 136px;
+    height: 33px;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 4px 4px rgba(0,0,0,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: #6B4D20;
+    font-size: 20px;
+  }
+
+  .progress {
+    position: absolute;
+    top: 101px;
+    right: 35px;
+    font-weight: 700;
+    color: #6B4D20;
+    font-size: 16px;
+  }
+
+  /* 기본 이미지 */
+  .image-base {
+    position: absolute;
+    top: 136px;
+    left: 26px;
+    width: 350px;
+    height: 350px;
+    background: url("image.png") center/cover no-repeat;
+  }
+
+  /* 정답 이미지 (초기 숨김) */
+  .image-answer {
+    position: absolute;
+    width: 238.91px;
+    height: 356px;
+    left: 82px;
+    top: 162px;
+    background: url("image1.png") center/cover no-repeat;
+    display: none;
+  }
+
+  .overlay-text {
+    position: absolute;
+    width: 262px;
+    height: 210px;
+    left: calc(50% - 131px);
+    top: 237px;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 30px;
+    text-align: center;
+    color: #6B4D20;
+    display: none;
+    white-space: pre-line;
+  }
+
+  .answer-box {
+    position: absolute;
+    top: 528px;
+    left: 26px;
+    width: 350px;
+    height: 46px;
+    background: #FEFCF7;
+    border: 1px solid #6B4D20;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .answer-box input {
+    width: 90%;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 20px;
+    text-align: center;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="screen">
+  <div class="topbar"></div>
+  <div class="title-pill">십자말풀이</div>
+  <div class="progress">진행률 30%</div>
+
+  <div class="image-base"></div>
+  <div id="answerImage" class="image-answer"></div>
+
+  <div id="overlayText" class="overlay-text">
+문제가 무엇인지 알아냈다!
+큐리오 상점에서 일어나고 있는 이상한 일의 원인은
+“마법실종사건”이었어요!
+A봉투를 개봉하세요
+  </div>
+
+  <div class="answer-box">
+    <input id="answerInput" type="text" placeholder="정답 입력" />
+  </div>
+</div>
+
+<script>
+  const input = document.getElementById("answerInput");
+  const baseImage = document.querySelector(".image-base");
+  const answerImage = document.getElementById("answerImage");
+  const overlayText = document.getElementById("overlayText");
+
+  input.addEventListener("input", () => {
+    if (input.value.trim() === "마법실종사건") {
+      baseImage.style.display = "none";   // 👉 기존 이미지 숨김
+      answerImage.style.display = "block";
+      overlayText.style.display = "block";
+    } else {
+      baseImage.style.display = "block";  // 👉 다시 보이기
+      answerImage.style.display = "none";
+      overlayText.style.display = "none";
+    }
+  });
+</script>
+
+</body>
+</html>
